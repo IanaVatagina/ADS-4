@@ -13,11 +13,11 @@ int cbinsearch(int *arr, int size, int value) {
             counter++;
             int nowInd = middleInd-1;
             middleInd++;
-            while (arr[middleInd] == value) {
+            while (arr[middleInd] == value && middleInd < size) {
                 middleInd++;
                 counter++;
             }
-            while (arr[nowInd] == value) {
+            while (arr[nowInd] == value && nowInd >= 0) {
                 nowInd--;
                 counter++;
             }
@@ -57,10 +57,12 @@ int countPairs2(int *arr, int len, int value) {
 }
 int countPairs3(int *arr, int len, int value) {
     int counter = 0;
-    for (int i = 0; i < len; i++) {
-        int ostSlag = value - arr[i];
-        int newBeginInd = i + 1;
-        counter += cbinsearch(&arr[newBeginInd], len - newBeginInd, ostSlag);
+    int leftInd = 0;
+    int middleInd = len/2;
+    while (leftInd < middleInd) {
+        int ostSlag = value - arr[leftInd];
+        counter += cbinsearch(arr+leftInd+1, len-leftInd-1, ostSlag);
+        leftInd++;
     }
     return counter;
 }
