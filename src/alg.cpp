@@ -52,7 +52,7 @@ int countPairs3(int *arr, int len, int value) {
     int stepLeft = 0;
     while (stepLeft < len) {
         int ostSlag = value - arr[stepLeft];
-        counter += cbinsearch(arr+stepLeft, len - stepLeft - 1, ostSlag);
+        counter += cbinsearch(&arr[stepLeft+1], len - stepLeft - 1, ostSlag);
         stepLeft++;
     }
     return counter;
