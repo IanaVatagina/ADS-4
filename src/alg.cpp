@@ -49,11 +49,10 @@ int countPairs2(int *arr, int len, int value) {
 }
 int countPairs3(int *arr, int len, int value) {
     int counter = 0;
-    int stepLeft = 0;
-    while (stepLeft < len) {
-        int ostSlag = value - arr[stepLeft];
-        counter += cbinsearch(&arr[stepLeft+1], len - stepLeft - 1, ostSlag);
-        stepLeft++;
+    for (int i = 0; i < len; i++) {
+        int ostSlag = value - arr[i];
+        int nextBeginInd = i + 1;
+        counter += cbinsearch(&arr[nextBeginInd], len - nextBeginInd, ostSlag);
     }
     return counter;
 }
